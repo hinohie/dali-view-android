@@ -56,7 +56,7 @@ do
   if ! echo -e $SDK_PACKAGES_INSTALLED | grep $package &> /dev/null
   then
     echo "Android SDK: Installing $package"
-    $SDK_MANAGER "$package"
+    yes | $SDK_MANAGER "$package"
   fi
 done
 
