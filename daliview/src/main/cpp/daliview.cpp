@@ -255,18 +255,18 @@ extern "C" JNIEXPORT void JNICALL Java_com_sec_daliview_DaliView_nativeOnKeyEven
       break;
   }
 
-  std::string keyName = "";
   switch( keyCode )
   {
     case 4:
-      keyName = "XF86Back";
+      Dali::KeyEvent keyEvent = Dali::DevelKeyEvent::New("XF86Back", "", "", keyCode, 0, timestamp, state, "", "", Dali::Device::Class::NONE, Dali::Device::Subclass::NONE);
+      Dali::Adaptor::Get().FeedKeyEvent( keyEvent );
       break;
     default:
+      Dali::KeyEvent keyEvent = Dali::DevelKeyEvent::New("", "", "", keyCode, 0, timestamp, state, "", "", Dali::Device::Class::NONE, Dali::Device::Subclass::NONE);
+      Dali::Adaptor::Get().FeedKeyEvent( keyEvent );
       break;
   }
 
-  Dali::KeyEvent keyEvent = Dali::DevelKeyEvent::New(keyName, "", "", keyCode, 0, timestamp, state, "", "", Dali::Device::Class::NONE, Dali::Device::Subclass::NONE);
-  Dali::Adaptor::Get().FeedKeyEvent( keyEvent );
 }
 
 extern "C" JNIEXPORT void JNICALL Java_com_sec_daliview_DaliView_nativeOnFinalize(JNIEnv* jenv, jobject obj, jlong handle)
